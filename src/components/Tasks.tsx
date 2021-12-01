@@ -1,16 +1,17 @@
 import React from "react";
+import { useTarefas } from "../state/bancoDeDadosDeTarefas";
 import { Tarefa } from "../types/task";
 import Task from "./Task";
 
-
 export interface TasksProps {
-    tasks: Tarefa[];
 }
-const Tasks = ({ tasks }: TasksProps) => {
+
+const Tasks = ({ }: TasksProps) => {
+    const tasks = useTarefas();
     return (
         <>
-            {tasks.map((task) => (
-                <Task task={task} />
+            {tasks.map((taskState) => (
+                <Task taskState={taskState} />
             ))}
         </>
     );

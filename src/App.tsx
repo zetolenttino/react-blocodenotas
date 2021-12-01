@@ -1,31 +1,33 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Tasks from "./components/Tasks";
 import './App.css';
 import { Tarefa } from "./types/task";
 import AddTask from "./components/AddTask";
-
+import Header from "./components/Header";
+import { BrowserRouter as Router, Switch, Route, useHistory } from "react-router-dom";
+import TaskDetails from './components/TaskDetails'
+// import { v4 as uuidv4 } from 'uuid';
 
 const App = () => {
-  const [tasks, setTasks] = useState<Tarefa[]>([
-    {
-      id: '1',
-      title: 'Estudar programação',
-      completed: false,
-    },
-    {
-      id: '2',
-      title: 'Ler livros',
-      completed: true,
-    },
-  ]);
-
   return (
-    <>
+    <Router>
       <div className='container'>
-        <AddTask />
-        <Tasks tasks={tasks} />
+        <Header />
+        <Switch>
+          <Route
+            path='/'
+            exact
+            render={() => (
+              <>
+                <AddTask />
+                <Tasks />
+              </>
+            )}
+          />
+          <Route path='/:taskId' component={TaskDetails} />
+        </Switch>
       </div>
-    </>
+    </Router>
   );
 };
 

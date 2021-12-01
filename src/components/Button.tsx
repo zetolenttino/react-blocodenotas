@@ -6,10 +6,19 @@ export interface ButtonProps {
     onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-const Button = ({ children, onClick }: ButtonProps) => {
+// com spead
+// const Button = ({ children, onClick }: ButtonProps) => {
+//     return (
+//         <button onClick={onClick} className='button'>
+//             {children}
+//         </button>
+//     );
+// }
+
+const Button = (props: ButtonProps) => {
     return (
-        <button onClick={onClick} className='button'>
-            {children}
+        <button onClick={props.onClick} className='button'>
+            {props.children}
         </button>
     );
 }
